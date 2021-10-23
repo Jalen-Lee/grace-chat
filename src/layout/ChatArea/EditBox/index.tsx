@@ -1,67 +1,63 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Button } from 'antd'
 
 import './index.scss'
 
-const onInput: React.FormEventHandler = function (e) {}
-
-const onCompositionEnd: React.CompositionEventHandler<HTMLPreElement> =
-  function (e) {}
-
-const onKeyDown: React.KeyboardEventHandler<HTMLPreElement> = function (e) {
-  console.log('键盘按下', e)
-  let { key, ctrlKey } = e
-  const target = e.target as HTMLElement
-  switch (key) {
-    case 'Enter':
-      e.preventDefault()
-      if (!ctrlKey) {
-        console.log('发送')
-        target.innerHTML = '<br/>'
-      } else {
-        target.innerHTML += '<br/><br/>'
-        var o = target.lastChild
-        var sel = window.getSelection()
-        var range = document.createRange()
-        range.selectNodeContents(target)
-        range.collapse(false)
-        range.setEndAfter(o as Node)
-        range.setStartAfter(o as Node)
-        sel?.removeAllRanges()
-        sel?.addRange(range)
-      }
-
-      console.log(target.innerText)
-      // console.log(e.target)
-
-      break
-    default:
-      break
-  }
-}
-
-const onKeyUp: React.KeyboardEventHandler<HTMLPreElement> = function (e) {
-  let { key, ctrlKey } = e
-  const target = e.target as HTMLElement
-  // if(target.lastChild?.nodeName !== 'BR'){
-  //   let br = document.createElement('br')
-  //   target.appendChild(br)
-  // }
-  // console.log(target.lastChild)
-
-  switch (key) {
-    case 'Enter':
-      e.preventDefault()
-      if (!ctrlKey) {
-      } else {
-      }
-      break
-    default:
-      break
-  }
-}
-
 export default function EditBox() {
+  const inputRef = useRef<HTMLPreElement>(null)
+  const [inputVal, setInputVal] = useState('')
+
+  useEffect(() => {
+    console.log(inputRef)
+  }, [])
+
+  const onInput: React.FormEventHandler<HTMLPreElement> = function (e) {
+    const { current} = inputRef
+    let nativeEvent = e.nativeEvent as InputEvent
+    if (!current || nativeEvent.isComposing) return
+    setInputVal(current.innerText)
+  }
+
+  const onCompositionEnd: React.CompositionEventHandler<HTMLPreElement> =
+    function (e) {
+      const { current } = inputRef
+      current && setInputVal(current.innerText)
+    }
+
+  const onKeyDown: React.KeyboardEventHandler<HTMLPreElement> = function (e) {
+    console.log('键盘按下', e)
+    let { key, ctrlKey } = e
+    const { current } = inputRef
+    if (!current) return
+    switch (key) {
+      case 'Enter':
+        e.preventDefault()
+        if (!ctrlKey) {
+          console.log('发送消息')
+          current.innerHTML = '<div><br/></div>'
+        } else {
+          current.innerHTML += '<div><br/></div>'
+          let o = current.lastChild
+          let sel = window.getSelection()
+          let range = document.createRange()
+          range.selectNodeContents(current)
+          range.collapse(false)
+          range.setEndAfter(o as Node)
+          range.setStartAfter(o as Node)
+          sel?.removeAllRanges()
+          sel?.addRange(range)
+          current.scrollTop = current.scrollHeight
+        }
+        break
+      default:
+        break
+    }
+  }
+
+  const onKeyUp: React.KeyboardEventHandler<HTMLPreElement> = function (e) {
+    let { key, ctrlKey } = e
+  }
+
   return (
     <div className='edit-box'>
       <pre
@@ -71,11 +67,15 @@ export default function EditBox() {
         onInput={onInput}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
+        ref={inputRef}
+        suppressContentEditableWarning
       >
-        <br />
+        <div>
+          <br />
+        </div>
       </pre>
       <div className='edit-box-footer'>
-        <span>字数：123</span>
+        <span>字数：{inputVal.length}</span>
         <Button type='primary'>发送</Button>
       </div>
     </div>
