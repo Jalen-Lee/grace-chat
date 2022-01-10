@@ -1,43 +1,50 @@
 import React from 'react'
-import { SettingOutlined } from '@ant-design/icons'
-import { Avatar } from 'antd'
-import GIcon from '../../components/GIcon'
-import './style.scss'
+import {
+  IconComment,
+  IconUserGroup,
+  IconSetting,
+  IconHelpCircle,
+} from '@douyinfe/semi-icons'
+import { Avatar } from '@douyinfe/semi-ui'
+import IconWrapper from '../../components/IconWrpper'
 
-const listItemStyle = {
-  fontSize: '32px',
-  color: '#ffffff',
-}
-
-const lists = [
-  <GIcon type='icon-Chat' style={listItemStyle} />,
-  <GIcon type='icon-a-2User' style={listItemStyle} />,
-]
+import './index.scss'
 
 export default function Sidebar() {
   return (
-    <aside className='grace-chat-BaseLayout-sidebar'>
-      <div className='grace-chat-BaseLayout-sidebar-header'>
-        <Avatar src='https://joeschmoe.io/api/v1/random' size='large' style={{ backgroundColor: '#f56a00' }}/>
-      </div>
-      <div className='grace-chat-BaseLayout-sidebar-body'>
-        <ul className='grace-chat-BaseLayout-sidebar-body-list'>
-          {lists.map((i) => {
-            return (
-              <li className='grace-chat-BaseLayout-sidebar-body-list-li'>
-                {i}
-              </li>
-            )
-          })}
-        </ul>
-        <div className='grace-chat-BaseLayout-sidebar-body-setting'>
-          <SettingOutlined
-            style={{
-              color: '#ffffff',
-              fontSize: '32px',
-            }}
+    <aside className='zeta-chat-layout-sidebar'>
+      <div>
+        <div className='zeta-chat-layout-sidebar-header'>
+          <Avatar
+            src='https://sf6-cdn-tos.douyinstatic.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/avatarDemo.jpeg'
+            style={{ margin: 4 }}
+            size='small'
           />
         </div>
+        <ul className='zeta-chat-layout-sidebar-tools'>
+          <li className='zeta-chat-layout-sidebar-tools-item'>
+            <IconWrapper
+              className='zeta-chat-layout-sidebar-icon'
+              badge={{ count: 100, dot: true }}
+              tooltip={{ content: '消息', position: 'right' }}
+            >
+              <IconComment style={{ fontSize: '20px' }} />
+            </IconWrapper>
+          </li>
+          <li className='zeta-chat-layout-sidebar-tools-item'>
+            <IconWrapper className='zeta-chat-layout-sidebar-icon'>
+              <IconUserGroup style={{ fontSize: '20px' }} />
+            </IconWrapper>
+          </li>
+        </ul>
+      </div>
+      <div className='zeta-chat-layout-sidebar-footer'>
+        <IconWrapper className='zeta-chat-layout-sidebar-icon'>
+          <IconHelpCircle style={{ fontSize: '20px' }} />
+        </IconWrapper>
+        <IconWrapper className='zeta-chat-layout-sidebar-icon'>
+          <IconSetting style={{ fontSize: '20px' }} />
+        </IconWrapper>
       </div>
     </aside>
   )

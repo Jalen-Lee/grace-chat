@@ -1,0 +1,51 @@
+@import '../../styles/var.scss';
+
+$sidebar-bg-color: #012428;
+
+.zeta-chat-layout-sidebar {
+  width: 60px;
+  height: 100%;
+  background-color: $sidebar-bg-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  &-tools {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    &-item {
+      margin: 3px 0;
+    }
+  }
+  &-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 22px;
+    &:hover {
+      background-color: rgba(var(--semi-grey-1), 0.2);
+      border-radius: 6px;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import AddressList from './AddressList'
 import ChatArea from './ChatArea'
 import ChatPanel from './ChatPanel'
 
-import './style.scss'
+import './index.scss'
 
 export default function BaseLayout() {
   return (
