@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -9,18 +10,6 @@ body,
   height: 100%;
 }
 
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.app {
-  width: 90vw;
-  height: 90vh;
-  border-radius: var(--semi-border-radius-large);
-  overflow: hidden;
-}
 
 body {
   font-family: Microsoft YaHei, Consolas, JetBrains Mono, Helvetica Neue,
@@ -48,4 +37,8 @@ ul {
 
 ::-webkit-scrollbar-track {
   background-color: transparent;
+}
+
+.invisible{
+  display: none;
 }

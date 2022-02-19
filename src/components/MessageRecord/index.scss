@@ -1,0 +1,111 @@
+.message-wrapper{
+  margin: 20px 0;
+}
+
+.message-body{
+  display: flex;
+  &-sender{
+
+  }
+
+  &-content{
+    display: flex;
+    flex-direction: column;
+    &-info{
+    }
+
+    &-date{
+      color: #a5b5c1;
+      font-size: 12px;
+    }
+  }
+
+  &-status{
+    width: 30px;
+  }
+}
+
+.message-body.opposite{
+  flex-direction: row;
+  //background-color: red;
+  .message-body-content {
+
+    align-items: flex-start;
+    &-info {
+    }
+
+    &-date {
+      margin-left: 15px;
+    }
+  }
+}
+
+.message-body.self{
+  flex-direction: row-reverse;
+  //background-color: aqua;
+  .message-body-content {
+    align-items: flex-end;
+
+    &-info {
+    }
+
+    &-date {
+      margin-right: 15px;
+    }
+  }
+}
+
+
+
+.msg-bubble{
+  margin-left: 14px;
+  background-color: #5cadff;
+  margin-right: 15px;
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+  font-size: 14px;
+  position: relative;
+  max-width: 350px;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
+  &-content{
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+.msg-bubble:before{
+  top: 27%;
+  transform: translateY(-27%);
+  position: absolute;
+  width: 0;
+  height: 0;
+  content: " ";
+}
+.self .msg-bubble{
+  background-color: #5cadff;
+  color: #ffffff;
+}
+
+.opposite .msg-bubble{
+  background-color: #ffffff;
+  color: #606266;
+}
+
+
+.self .msg-bubble:before{
+  right: -10px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #5cadff;
+}
+
+.opposite .msg-bubble:before{
+  left: -10px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #ffffff;
+}
