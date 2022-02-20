@@ -48,7 +48,14 @@ const ConversationDetail = observer(function ({ detail }:ConversationDetailProps
       <main className='content'>
         <div className='msg-scroller'>
           <div className='no-more'>没有更多了</div>
-          <Message message={message1} />
+          <Message data={message1} />
+          <Message data={message2} />
+          <Message data={message2} />
+          <Message data={message2} />
+          <Message data={message2} />
+          <Message data={message2} />
+          <div className='no-more'>17:15</div>
+          <Message data={message2} />
         </div>
       </main>
       <div className='input-area'>

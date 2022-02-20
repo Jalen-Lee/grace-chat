@@ -1,63 +1,78 @@
-.message-wrapper{
+.conversation-detail-message {
   margin: 20px 0;
 }
 
-.message-body{
+.message-wrap {
   display: flex;
-  &-sender{
+
+  .message-sender {
 
   }
 
-  &-content{
+  .message-content {
     display: flex;
     flex-direction: column;
-    &-info{
+
+    &-header {
+      display: flex;
+      color: #a9a9a9;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
     }
 
-    &-date{
+    &-post-time {
+      display: flex;
+      margin-top: 2px;
       color: #a5b5c1;
       font-size: 12px;
     }
   }
 
-  &-status{
+  .message-status {
     width: 30px;
   }
 }
 
-.message-body.opposite{
+.message-wrap.opposite {
   flex-direction: row;
   //background-color: red;
-  .message-body-content {
-
+  .message-content {
     align-items: flex-start;
-    &-info {
+
+    &-header{
+      margin-left: 15px;
     }
 
-    &-date {
+    &-main {
+    }
+
+    &-post-time {
       margin-left: 15px;
     }
   }
 }
 
-.message-body.self{
+.message-wrap.self {
   flex-direction: row-reverse;
   //background-color: aqua;
-  .message-body-content {
+  .message-content {
     align-items: flex-end;
-
-    &-info {
+    &-header{
+      margin-right: 15px;
     }
 
-    &-date {
+    &-main {
+    }
+
+    &-post-time {
       margin-right: 15px;
     }
   }
 }
 
 
-
-.msg-bubble{
+.message-body {
   margin-left: 14px;
   background-color: #5cadff;
   margin-right: 15px;
@@ -71,13 +86,15 @@
   word-break: break-all;
   padding: 10px;
   box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
-  &-content{
-    display: inline-block;
+
+  &-text {
+    //display: inline-block;
     width: 100%;
     overflow: hidden;
   }
 }
-.msg-bubble:before{
+
+.message-body:before {
   top: 27%;
   transform: translateY(-27%);
   position: absolute;
@@ -85,25 +102,26 @@
   height: 0;
   content: " ";
 }
-.self .msg-bubble{
+
+.self .message-body {
   background-color: #5cadff;
   color: #ffffff;
 }
 
-.opposite .msg-bubble{
+.opposite .message-body {
   background-color: #ffffff;
   color: #606266;
 }
 
 
-.self .msg-bubble:before{
+.self .message-body:before {
   right: -10px;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid #5cadff;
 }
 
-.opposite .msg-bubble:before{
+.opposite .message-body:before {
   left: -10px;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;

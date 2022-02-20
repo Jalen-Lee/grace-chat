@@ -95,6 +95,7 @@ function EditArea(props: EditAreaProp) {
       onKeyUp={onKeyUp}
       ref={inputRef}
       suppressContentEditableWarning
+      placeholder="你好呀"
     >
         <div>
           <br/>
@@ -125,7 +126,7 @@ export default function ConversationDetailTextBox() {
   );
 
   return (
-    <div className={'input-bar-wrapper'}>
+    <div className={'conversation-detail-textbox'}>
       <div className={'input-bar-header'}>
         <div className='input-bar-header-left'>
           <Popover content={<Picker set='apple'/>} trigger='click'>
@@ -136,16 +137,15 @@ export default function ConversationDetailTextBox() {
           <OptionButton title="发图片" icon='icon-tupian' onClick={sendImage}/>
           <OptionButton title="发文件" icon='icon-file' onClick={sendFile}/>
         </div>
-        <div className='input-bar-header-right'>
-
-        </div>
+        <div className='input-bar-header-right'></div>
       </div>
+
       <div className={'input-bar-main'}>
         <EditArea/>
       </div>
-      <div className={'input-bar-footer'}>
-        <Button variant="contained">发送</Button>
-      </div>
+      {/*<div className={'input-bar-footer'}>*/}
+      {/*  <Button variant="contained">发送</Button>*/}
+      {/*</div>*/}
     </div>
   )
 }
