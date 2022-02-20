@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import './index.scss'
-import SearchBar from '../ConversationSearchBar'
+import SearchBar from '../conversations-search'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import ConversationItem from '../ConversationListItem'
+import ConversationItem from '../conversations-list-item'
 import classNames from 'classnames'
 
 

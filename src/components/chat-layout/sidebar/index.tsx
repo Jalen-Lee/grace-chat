@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import ConversationList from '../../ConversationList'
-import ContactsList from '../../contactsList'
+import ConversationList from '../../conversations-list'
+import ContactsList from '../../contacts-list'
 import {NavTabItemName} from '../../../types/common.d'
 
 
@@ -18,7 +18,7 @@ export default observer(function({
 }:Prop) {
 
   // const _map:any = {
-  //   [NavTabItemName.CONVERSATION_LIST]:<ConversationList conversationChange={conversationChange}/>,
+  //   [NavTabItemName.CONVERSATION_LIST]:<conversations-list conversationChange={conversationChange}/>,
   //   [NavTabItemName.FRIEND_LIST]: <ContactsList/>
   // }
 
@@ -30,10 +30,10 @@ export default observer(function({
       {/*}*/}
       <ConversationList
         conversationChange={conversationChange}
-        isShow={currentTab === NavTabItemName.CONVERSATION_LIST}
+        isShow={currentTab === NavTabItemName.CONVERSATIONS_LIST}
       />
       <ContactsList
-        isShow={currentTab === NavTabItemName.FRIEND_LIST}
+        isShow={currentTab === NavTabItemName.CONTACTS_LIST}
       />
     </aside>
   )

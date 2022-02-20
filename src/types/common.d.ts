@@ -1,5 +1,5 @@
 export enum NavTabItemName {
-  CONVERSATION_LIST = 'conversation-list',
-  FRIEND_LIST = 'friend-list',
+  CONVERSATIONS_LIST = 'conversations-list',
+  CONTACTS_LIST = 'contacts-list',
   CHAT_SETTING = 'chat-setting'
 }

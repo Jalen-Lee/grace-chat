@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import './index.scss'
 import classNames from 'classnames'
 
-import ContactsItem from '../ContactsItem'
+import ContactsItem from '../contacts-list-item'
 
 
 import Accordion from '@mui/material/Accordion'

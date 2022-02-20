@@ -1,32 +1,32 @@
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid'
 import {
   ChatNavigation,
   ChatSidebar,
-  ChatMain
-} from '../../components/ChatLayout'
+  ChatMain,
+} from '../../components/chat-layout'
 import { NavTabItemName } from '../../types/common.d'
 
 import './index.scss'
 
 export default function Chat() {
-  const [ currentTab,setCurrentTab ] = useState<NavTabItemName>(NavTabItemName.CONVERSATION_LIST)
-  const [ currentConversation,setCurrentConversation] = useState<any>('')
+  const [currentTab, setCurrentTab] = useState<NavTabItemName>(NavTabItemName.CONVERSATIONS_LIST)
+  const [currentConversation, setCurrentConversation] = useState<any>()
 
-  function onTabChange(tabId:NavTabItemName){
+  function onTabChange(tabId: NavTabItemName) {
     setCurrentTab(tabId)
   }
 
-  function onConversationChange(conversation:any){
+  function onConversationChange(conversation: any) {
     setCurrentConversation(conversation)
-    console.log("#11",conversation)
+    console.log('#11', conversation)
   }
 
   return (
     <div id='chat-container'>
-      <div className='bg'/>
+      <div className='bg' />
       <div className='layout'>
-        <Grid container height='100%'>
+        <Grid container height='100%' wrap={'nowrap'}>
           <Grid item width={'80px'}>
             <ChatNavigation
               tabChange={onTabChange}
@@ -41,6 +41,7 @@ export default function Chat() {
           <Grid item xs>
             <ChatMain
               currentConversation={currentConversation}
+              currentTab={currentTab}
             />
           </Grid>
         </Grid>

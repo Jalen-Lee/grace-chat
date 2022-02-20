@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import Avatar from '@mui/material/Avatar'
-import NavTabItem from '../../NavTabItem'
+import NavTabItem from '../../nav-tab-item'
 import ChatIcon from '@mui/icons-material/Chat'
 import PeopleIcon from '@mui/icons-material/People'
 import SettingsIcon from '@mui/icons-material/Settings'
@@ -15,7 +15,7 @@ interface Prop {
 
 export default observer(function({ tabChange }:Prop){
 
-  const [currentTab,setCurrentTab] = useState<NavTabItemName>(NavTabItemName.CONVERSATION_LIST)
+  const [currentTab,setCurrentTab] = useState<NavTabItemName>(NavTabItemName.CONVERSATIONS_LIST)
 
   const {userStore} = useStore()
 
@@ -37,10 +37,10 @@ export default observer(function({ tabChange }:Prop){
       </div>
       <div className='tabs-list'>
         <div className='row-1'>
-          <NavTabItem id={NavTabItemName.CONVERSATION_LIST} title='会话列表' onClick={onNavItemClick} isActive={currentTab === NavTabItemName.CONVERSATION_LIST}>
+          <NavTabItem id={NavTabItemName.CONVERSATIONS_LIST} title='会话列表' onClick={onNavItemClick} isActive={currentTab === NavTabItemName.CONVERSATIONS_LIST}>
             <ChatIcon fontSize={'large'}/>
           </NavTabItem>
-          <NavTabItem id={NavTabItemName.FRIEND_LIST} title='好友列表' onClick={onNavItemClick} isActive={currentTab === NavTabItemName.FRIEND_LIST}>
+          <NavTabItem id={NavTabItemName.CONTACTS_LIST} title='好友列表' onClick={onNavItemClick} isActive={currentTab === NavTabItemName.CONTACTS_LIST}>
             <PeopleIcon fontSize={'large'}/>
           </NavTabItem>
         </div>

@@ -103,7 +103,7 @@ function EditArea(props: EditAreaProp) {
   )
 }
 
-export default function InputBar() {
+export default function ConversationDetailTextBox() {
 
   function sendFile() {
     console.log("发送文件")
