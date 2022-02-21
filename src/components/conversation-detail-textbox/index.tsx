@@ -61,8 +61,10 @@ function EditArea({ submit }: {
       case 'Enter':
         e.preventDefault()
         if (!ctrlKey) {
-          submit(current.innerText)
-          current.innerHTML = '<div><br/></div>'
+          if(current.innerText!=='\n'){
+            submit(current.innerText)
+            current.innerHTML = '<div><br/></div>'
+          }
         } else {
           console.log('换行')
           current.innerHTML += '<div><br/></div>'

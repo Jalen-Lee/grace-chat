@@ -74,16 +74,17 @@ const ConversationDetail = observer(function ({ detail }:ConversationDetailProps
   const scrollerRef = useRef<HTMLDivElement>(null)
 
   const handleSubmit = function(val:string){
-    console.log('发送消息',val)
+    if(val.length === 0) return
+    console.log('发送消息',val,val.length)
     setMessages([
       ...messages,
       {
         id: Date.now().toString(),
-        chat_type:'private',
+        chat_type:(Math.random()*10)>5?'private':'group',
         msg_type:'text',
         content: val,
         sender:{
-          uid:'666',
+          uid:(Math.random()*10)>5?'666':Date.now().toString(),
           name:'jaylenl',
           avatar:avatar
         },
