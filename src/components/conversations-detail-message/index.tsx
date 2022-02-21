@@ -36,31 +36,34 @@ function MessageBody(props:any){
   )
 }
 
+const myId = '666'
 
 export default function ConversationsDetailMessage(props:any){
-  const { from,type,content } = props.data
+  const {
+    id,chat_type,msg_type,content,sender,post_date
+  } = props.data
 
 
   return (
     <div className={'conversation-detail-message'}>
-      <div className={classNames('message-wrap ',from)}>
+      <div className={classNames('message-wrap ',sender.uid === myId?'self':'opposite')}>
         <div className={'message-sender'}>
           <Avatar
-            src={MyAvatar}
+            src={sender.avatar}
             shape={'square'}
             size={50}
             draggable={false}
           />
         </div>
         <div className={'message-content'}>
-          {/*<div className={'message-content-header'}>*/}
-          {/*  jaylenl*/}
-          {/*</div>*/}
+          <div className={classNames('message-content-header',{'invisible': chat_type === 'private'})}>
+            jaylenl
+          </div>
           <div className={'message-content-main'}>
             <MessageBody content={content}/>
           </div>
           <div className={'message-content-post-time'}>
-            <span>{dayjs().fromNow()}</span>
+            <span>{dayjs().fromNow(post_date)}</span>
           </div>
         </div>
         <div className={'message-status'}>

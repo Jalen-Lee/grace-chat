@@ -1,5 +1,5 @@
 import React, {MouseEventHandler, useRef, useState, useEffect} from "react";
-import {Tooltip, Popover} from 'antd';
+import {Tooltip, Popover,message} from 'antd';
 import Button from '@mui/material/Button';
 
 
@@ -29,30 +29,31 @@ const OptionButton = function (props: OptionButtonProp) {
   )
 }
 
-interface EditAreaProp {
-  [prop: string]: string
-}
 
-
-function EditArea(props: EditAreaProp) {
+function EditArea({ submit }: {
+  submit:(val:string)=>void
+}) {
+  console.log('EditArea渲染')
   const inputRef = useRef<HTMLPreElement>(null)
-  const [inputVal, setInputVal] = useState('')
+  const [content, setContent] = useState('')
 
   const onInput: React.FormEventHandler<HTMLPreElement> = function (e) {
     const {current} = inputRef
     let nativeEvent = e.nativeEvent as InputEvent
     if (!current || nativeEvent.isComposing) return
-    setInputVal(current.innerText)
+    console.log('单词输入中')
+    setContent(current.innerText)
   }
 
   const onCompositionEnd: React.CompositionEventHandler<HTMLPreElement> =
     function (e) {
       const {current} = inputRef
-      current && setInputVal(current.innerText)
+      console.log('汉字输入')
+      current && setContent(current.innerText)
     }
 
   const onKeyDown: React.KeyboardEventHandler<HTMLPreElement> = function (e) {
-    console.log('键盘按下', e)
+    // console.log('键盘按下', e)
     let {key, ctrlKey} = e
     const {current} = inputRef
     if (!current) return
@@ -60,9 +61,10 @@ function EditArea(props: EditAreaProp) {
       case 'Enter':
         e.preventDefault()
         if (!ctrlKey) {
-          console.log('发送消息')
+          submit(current.innerText)
           current.innerHTML = '<div><br/></div>'
         } else {
+          console.log('换行')
           current.innerHTML += '<div><br/></div>'
           let o = current.lastChild
           let sel = window.getSelection()
@@ -95,7 +97,6 @@ function EditArea(props: EditAreaProp) {
       onKeyUp={onKeyUp}
       ref={inputRef}
       suppressContentEditableWarning
-      placeholder="你好呀"
     >
         <div>
           <br/>
@@ -104,36 +105,35 @@ function EditArea(props: EditAreaProp) {
   )
 }
 
-export default function ConversationDetailTextBox() {
-
+export default function ConversationDetailTextBox(props:{
+  onSubmit?:(val:string)=>void
+}) {
+  const {onSubmit} = props
+  console.log('textbox渲染')
   function sendFile() {
+    message.info('功能正在开发中~')
     console.log("发送文件")
   }
 
   function sendImage() {
+    message.info('功能正在开发中~')
     console.log("发送图片")
   }
 
   function sendEmoji() {
+    message.info('功能正在开发中~')
     console.log('发送表情')
   }
-
-  const content = (
-    <div>
-      <p>Content</p>
-      <p>Content</p>
-    </div>
-  );
 
   return (
     <div className={'conversation-detail-textbox'}>
       <div className={'input-bar-header'}>
         <div className='input-bar-header-left'>
-          <Popover content={<Picker set='apple'/>} trigger='click'>
-            <div>
+          {/*<Popover content={<Picker set='apple'/>} trigger='click'>*/}
+          {/*  <div>*/}
               <OptionButton title="发表情" icon='icon-xiaolian' onClick={sendEmoji}/>
-            </div>
-          </Popover>
+          {/*  </div>*/}
+          {/*</Popover>*/}
           <OptionButton title="发图片" icon='icon-tupian' onClick={sendImage}/>
           <OptionButton title="发文件" icon='icon-file' onClick={sendFile}/>
         </div>
@@ -141,7 +141,7 @@ export default function ConversationDetailTextBox() {
       </div>
 
       <div className={'input-bar-main'}>
-        <EditArea/>
+        <EditArea submit={onSubmit!}/>
       </div>
       {/*<div className={'input-bar-footer'}>*/}
       {/*  <Button variant="contained">发送</Button>*/}
