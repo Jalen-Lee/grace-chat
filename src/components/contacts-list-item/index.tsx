@@ -4,10 +4,14 @@ import './index.scss'
 
 
 
-export default observer(function(prop:any) {
-  const {info} = prop
+export default observer(function(prop: {
+  info:any,
+  onSelect:(contact:any)=>void
+}) {
+  const {info,onSelect} = prop
+  console.log(onSelect)
   return (
-    <div className='contacts-item'>
+    <div className='contacts-item' onClick={()=>onSelect(info)}>
       <div className='avatar'>
         <img src={info.icon} alt={info.name} />
       </div>

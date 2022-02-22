@@ -12,6 +12,7 @@ import './index.scss'
 export default function Chat() {
   const [currentTab, setCurrentTab] = useState<NavTabItemName>(NavTabItemName.CONVERSATIONS_LIST)
   const [currentConversation, setCurrentConversation] = useState<any>()
+  const [contact, setContact] = useState<any>()
 
   function onTabChange(tabId: NavTabItemName) {
     setCurrentTab(tabId)
@@ -20,6 +21,12 @@ export default function Chat() {
   function onConversationChange(conversation: any) {
     setCurrentConversation(conversation)
     console.log('#11', conversation)
+  }
+
+  function onContactChange(contact:any){
+
+    setContact(contact)
+    console.log("联系人变更",contact)
   }
 
   return (
@@ -36,12 +43,14 @@ export default function Chat() {
             <ChatSidebar
               currentTab={currentTab}
               conversationChange={onConversationChange}
+              onContactChange={onContactChange}
             />
           </Grid>
           <Grid item xs>
             <ChatMain
               currentConversation={currentConversation}
               currentTab={currentTab}
+              contact={contact}
             />
           </Grid>
         </Grid>

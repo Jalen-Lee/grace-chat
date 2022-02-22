@@ -3,11 +3,13 @@ import './index.scss'
 import { observer } from 'mobx-react-lite'
 import IEmpty, { IEmptyType } from '../../i-empty'
 import ConversationDetail from '../../conversation-detail'
+import ContactDetail from '../../contact-detail'
 import { NavTabItemName } from '../../../types/common.d'
 
 interface Prop {
   currentConversation?: any
   currentTab: any
+  contact:any
 }
 
 function wrapper(el: React.ReactNode) {
@@ -18,14 +20,17 @@ function wrapper(el: React.ReactNode) {
   )
 }
 
-export default observer(function({ currentConversation, currentTab }: Prop) {
+export default observer(function({ currentConversation, currentTab,contact }: Prop) {
   if (currentTab === NavTabItemName.CONVERSATIONS_LIST) {
     if (!currentConversation) return wrapper(<IEmpty type={IEmptyType.NO_MSG}/>)
     else {
       return wrapper(<ConversationDetail detail={currentConversation} />)
     }
   } else if (currentTab === NavTabItemName.CONTACTS_LIST) {
-    return wrapper(<IEmpty type={IEmptyType.NULL_DATA}/>)
+    if (!contact) return wrapper(<IEmpty type={IEmptyType.NO_MSG}/>)
+    else {
+      return (wrapper(<ContactDetail data={contact}/>))
+    }
   } else {
     return wrapper(<IEmpty type={IEmptyType.NO_DATA}/>)
   }

@@ -33,11 +33,13 @@ const accordionSx = {
 }
 
 interface Props{
-  isShow:boolean
+  isShow:boolean,
+  onContactChange:(contact:any)=>void
 }
 
-export default observer(function({ isShow }:Props) {
+export default observer(function({ isShow,onContactChange }:Props) {
 
+  console.log(onContactChange)
   const {userStore} = useStore()
   console.log('userStore',userStore)
   const {conversations} = userStore
@@ -67,7 +69,7 @@ export default observer(function({ isShow }:Props) {
         <AccordionDetails>
           {
             conversations.map(i=>(
-              <ContactsItem info={i}/>
+              <ContactsItem info={i} onSelect={onContactChange} key={i.id}/>
             ))
           }
         </AccordionDetails>

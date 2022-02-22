@@ -9,30 +9,24 @@ import './index.scss'
 
 interface Prop {
   currentTab:NavTabItemName,
-  conversationChange:(conversation:any)=>void
+  conversationChange:(conversation:any)=>void,
+  onContactChange:(contact:any)=>void
 }
 
 
 export default observer(function({
-  currentTab, conversationChange
+  currentTab, conversationChange,onContactChange
 }:Prop) {
-
-  // const _map:any = {
-  //   [NavTabItemName.CONVERSATION_LIST]:<conversations-list conversationChange={conversationChange}/>,
-  //   [NavTabItemName.FRIEND_LIST]: <ContactsList/>
-  // }
 
 
   return (
     <aside className='chat-layout-sidebar-container'>
-      {/*{*/}
-      {/*  _map[currentTab]*/}
-      {/*}*/}
       <ConversationList
         conversationChange={conversationChange}
         isShow={currentTab === NavTabItemName.CONVERSATIONS_LIST}
       />
       <ContactsList
+        onContactChange={onContactChange}
         isShow={currentTab === NavTabItemName.CONTACTS_LIST}
       />
     </aside>
